@@ -33,6 +33,6 @@ class CreateTascasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tascas');
+        Schema::dropIfExists('tasques');
     }
 }

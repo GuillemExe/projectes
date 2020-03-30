@@ -12,7 +12,7 @@ $factory->define(Tasca::class, function (Faker $faker) {
         'completada' => $faker->boolean(),
         'descripcio' => $faker->paragraph,
         'projecte_id' => function () {
-            return factory(App\Projecte::class)->create()->id;
+            return factory(App\Projecte::class)->make()->id;
             // Genere un id de projecte relacionat
         },
     ];

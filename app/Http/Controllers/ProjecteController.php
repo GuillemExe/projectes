@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Projecte;
+use App\Tasca;
 
 class ProjecteController extends Controller
 {
@@ -54,8 +55,8 @@ class ProjecteController extends Controller
     public function store(Request $request)
     {
         //
-        $coche = Coche::create($request->all());
-        return $coche;
+        $projecte = Projecte::create($request->all());
+        return $projecte;
 
         // return view('coche.cocheForm');
     }
@@ -122,11 +123,36 @@ class ProjecteController extends Controller
      */
     public function destroy($id)
     {
-        //
-        Coche::find($id)->delete();
+        // $projecte = Tasca::all()->contains($id);
 
-        $coches = Coche::all();
 
-        return view('coche.cocheLista', ['coches' => $coches]);
+        // SOLUCION 1
+        $tasca = Tasca::where('projecte_id', 'LIKE', $id)->get();
+        if($tasca == "[]") {
+            return "Se puede eliminar";
+        } else {
+            return "No se puede eliminar";
+        }
+
+        // SOLUCION 2
+        // $tasques = Tasca::all();
+        // $exist = false;
+
+        // foreach ($tasques as $tasca => $valor) {
+        //     if ($id == $valor['projecte_id']) {
+        //         $exist = true;
+        //     }
+        // }
+
+        // if ($exist == false) {
+        //     return "Se puede eliminar";
+        // } else {
+        //     return "No puede eliminar";
+        // }
+
+
+        // Projecte::find($id)->delete();
+
+        // return view('coche.cocheLista', ['coches' => $coches]);
     }
 }

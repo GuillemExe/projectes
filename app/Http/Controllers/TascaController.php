@@ -19,9 +19,15 @@ class TascaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $tasques = Tasca::where('projecte_id', 'LIKE', $id)->get();
+
+        // TO POSTMAN
+        return $tasques;
+
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -31,7 +37,8 @@ class TascaController extends Controller
      */
     public function create()
     {
-        //
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -40,9 +47,16 @@ class TascaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
-        //
+        $request->request->add(['projecte_id' => $id]);
+        $tasca = Tasca::create($request->all());
+        
+        // TO POSTMAN
+        return $tasca;
+
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -51,9 +65,15 @@ class TascaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $tascaID)
     {
-        //
+        $tasca = Tasca::find($tascaID);
+
+        // TO POSTMAN
+        return $tasca;
+
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -64,7 +84,8 @@ class TascaController extends Controller
      */
     public function edit($id)
     {
-        //
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -74,9 +95,17 @@ class TascaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request, $tascaID)
     {
-        //
+        $tasca = Tasca::findOrFail($tascaID);
+        $input = $request->all();
+        $tasca->fill($input)->save();
+
+        // TO POSTMAN
+        return $tasca;
+
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -85,8 +114,14 @@ class TascaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $tascaID)
     {
-        //
+        Tasca::find($tascaID)->delete();
+
+        // TO POSTMAN
+        return true;
+
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 }

@@ -32,7 +32,7 @@ class ProjecteController extends Controller
         return $projectes;
 
         // TO VIEW
-        // return view('coche.cocheLista', ['coches' => $coches]);
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -54,11 +54,13 @@ class ProjecteController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $projecte = Projecte::create($request->all());
+
+        // TO POSTMAN
         return $projecte;
 
-        // return view('coche.cocheForm');
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -69,14 +71,13 @@ class ProjecteController extends Controller
      */
     public function show($id)
     {
-        //
         $projecte = Projecte::find($id);
 
         // TO POSTMAN
         return $projecte;
 
         // TO VIEW
-        // return view('coche.cocheView')->with('coche', $coche);
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -87,14 +88,8 @@ class ProjecteController extends Controller
      */
     public function edit($id)
     {
-        //
-        $coche = Coche::find($id);
-
-        // TO POSTMAN
-        // return $coche;
-
         // TO VIEW
-        return view('coche.cocheEdit')->with('coche', $coche);
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -107,12 +102,14 @@ class ProjecteController extends Controller
     public function update(Request $request, $id)
     {
         $projecte = Projecte::findOrFail($id);
-
         $input = $request->all();
-
         $projecte->fill($input)->save();
-
+        
+        // TO POSTMAN
         return $projecte;
+
+        // TO VIEW
+        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
     }
 
     /**
@@ -123,36 +120,17 @@ class ProjecteController extends Controller
      */
     public function destroy($id)
     {
-        // $projecte = Tasca::all()->contains($id);
-
-
-        // SOLUCION 1
         $tasca = Tasca::where('projecte_id', 'LIKE', $id)->get();
         if($tasca == "[]") {
+            // TO POSTMAN
             return "Se puede eliminar";
+            // TO VIEW
+            // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
         } else {
+            // TO POSTMAN
             return "No se puede eliminar";
+            // TO VIEW
+            // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
         }
-
-        // SOLUCION 2
-        // $tasques = Tasca::all();
-        // $exist = false;
-
-        // foreach ($tasques as $tasca => $valor) {
-        //     if ($id == $valor['projecte_id']) {
-        //         $exist = true;
-        //     }
-        // }
-
-        // if ($exist == false) {
-        //     return "Se puede eliminar";
-        // } else {
-        //     return "No puede eliminar";
-        // }
-
-
-        // Projecte::find($id)->delete();
-
-        // return view('coche.cocheLista', ['coches' => $coches]);
     }
 }

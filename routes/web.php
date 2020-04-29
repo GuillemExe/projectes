@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Api\Projecte;
-use Api\Tasca;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +18,7 @@ Route::get('/', function () {
 });
 
 // TOKEN RETURN - OPTIONAL
-// Route::get('/projecte', 'ProjecteController@tokenReturn');
+Route::get('/token', 'ProjecteController@tokenReturn')->name('projectes.token');
 
 
 // PROJECTE

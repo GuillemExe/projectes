@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Api\Projecte;
+use Api\Tasca;
 
 class TascaController extends Controller
 {
+    // 200 OK (Accepted)
+    // 201 CREATE (Accepted)
+    // 202 ACCEPTED (Accepted)
+    // 203 NON-AUTHORITATIVE (Accepted)
+    // 204 NO CONTENT (Accepted)
+    
     /**
      * Display a listing of the resource.
      *

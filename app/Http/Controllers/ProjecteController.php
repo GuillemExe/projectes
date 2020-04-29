@@ -29,10 +29,10 @@ class ProjecteController extends Controller
         $projectes = Projecte::all();
 
         // TO POSTMAN
-        return $projectes;
+        // return $projectes;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('projecte.projecteIndex', ['projectes' => $projectes]);
     }
 
     /**
@@ -43,7 +43,7 @@ class ProjecteController extends Controller
     public function create()
     {
         // TO VIEW
-        // return view('coche.cocheCreate');
+        return view('projecte.projecteCreate');
     }
 
     /**
@@ -57,10 +57,10 @@ class ProjecteController extends Controller
         $projecte = Projecte::create($request->all());
 
         // TO POSTMAN
-        return $projecte;
+        // return $projecte;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('projecte.projecteStore', ['projecte' => $projecte]);
     }
 
     /**
@@ -71,13 +71,13 @@ class ProjecteController extends Controller
      */
     public function show($id)
     {
-        $projecte = Projecte::find($id);
+        $projecte = Projecte::findOrFail($id);
 
         // TO POSTMAN
-        return $projecte;
+        // return $projecte;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('projecte.projecteShow', ['projecte' => $projecte]);
     }
 
     /**
@@ -88,8 +88,10 @@ class ProjecteController extends Controller
      */
     public function edit($id)
     {
+        $projecte = Projecte::findOrFail($id);
+
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('projecte.projecteEdit', ['projecte' => $projecte]);
     }
 
     /**
@@ -102,14 +104,15 @@ class ProjecteController extends Controller
     public function update(Request $request, $id)
     {
         $projecte = Projecte::findOrFail($id);
+        $projecteOld = $projecte; 
         $input = $request->all();
         $projecte->fill($input)->save();
         
         // TO POSTMAN
-        return $projecte;
+        // return $projecte;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('projecte.projecteUpdate', ['projecte' => $projecte, 'projecteOld' => $projecteOld]);
     }
 
     /**
@@ -122,15 +125,18 @@ class ProjecteController extends Controller
     {
         $tasca = Tasca::where('projecte_id', 'LIKE', $id)->get();
         if($tasca == "[]") {
+            Projecte::find($id)->delete();
             // TO POSTMAN
-            return "Se puede eliminar";
+            // return "Se puede eliminar";
+            
             // TO VIEW
-            // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+            return view('projecte.projecteDestroy', ['eliminado' => true]);
         } else {
             // TO POSTMAN
-            return "No se puede eliminar";
+            // return "No se puede eliminar";
+
             // TO VIEW
-            // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+            return view('projecte.projecteDestroy', ['eliminado' => false]);
         }
     }
 }

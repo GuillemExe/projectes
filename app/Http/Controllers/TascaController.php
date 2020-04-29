@@ -24,10 +24,10 @@ class TascaController extends Controller
         $tasques = Tasca::where('projecte_id', 'LIKE', $id)->get();
 
         // TO POSTMAN
-        return $tasques;
+        // return $tasques;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('tasca.tascaIndex', ['tasques' => $tasques]);
     }
 
     /**
@@ -38,7 +38,7 @@ class TascaController extends Controller
     public function create()
     {
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('tasca.tascaCreate');
     }
 
     /**
@@ -53,10 +53,10 @@ class TascaController extends Controller
         $tasca = Tasca::create($request->all());
         
         // TO POSTMAN
-        return $tasca;
+        // return $tasca;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('tasca.tascaStore', ['tasca' => $tasca]);
     }
 
     /**
@@ -67,13 +67,13 @@ class TascaController extends Controller
      */
     public function show($id, $tascaID)
     {
-        $tasca = Tasca::find($tascaID);
+        $tasca = Tasca::findOrFail($tascaID);
 
         // TO POSTMAN
-        return $tasca;
+        // return $tasca;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('tasca.tascaShow', ['tasca' => $tasca]);
     }
 
     /**
@@ -84,8 +84,10 @@ class TascaController extends Controller
      */
     public function edit($id)
     {
+        $tasca = Tasca::findOrFail($tascaID);
+
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('tasca.tascaEdit', ['tasca' => $tasca]);
     }
 
     /**
@@ -98,14 +100,15 @@ class TascaController extends Controller
     public function update($id, Request $request, $tascaID)
     {
         $tasca = Tasca::findOrFail($tascaID);
+        $tascaOld = $tasca; 
         $input = $request->all();
         $tasca->fill($input)->save();
 
         // TO POSTMAN
-        return $tasca;
+        // return $tasca;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('tasca.tascaUpdate', ['tasca' => $tasca, 'tascaOld' => $tascaOld]);
     }
 
     /**
@@ -119,9 +122,9 @@ class TascaController extends Controller
         Tasca::find($tascaID)->delete();
 
         // TO POSTMAN
-        return true;
+        // return true;
 
         // TO VIEW
-        // return view('carpeta.nombreDelDocumento', ['identificadorEnVista' => $variable]);
+        return view('tasca.tascaDestroy', ['eliminado' => true]);
     }
 }

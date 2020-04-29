@@ -8,7 +8,7 @@
 
 
 @section('content')
-<h1>Edit</h1>
+<h1>Show</h1>
 
 @endsection
 

@@ -8,7 +8,7 @@
 
 
 @section('content')
-<h1>LIST</h1>
+<h1>Index</h1>
 
 @endsection
 

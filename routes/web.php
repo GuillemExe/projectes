@@ -46,10 +46,13 @@ Route::get('/projectes/{projecte}/tasques/create', 'TascaController@create')->na
 // STORE
 Route::post('/projectes/{projecte}/tasques', 'TascaController@store')->name('projectes.tasques.store');
 // SHOW
-Route::get('/projectes/{projecte}/tasques/{tasque}', 'TascaController@show')->name('projectes.tasques.show');
+// Route::get('/projectes/{projecte}/tasques/{tasque}', 'TascaController@show')->name('projectes.tasques.show');
+Route::get('/projectes/{projecte}/tasques/{tasca}', ['as' => 'projectes.tasques.show', 'uses' => 'TascaController@show', function ($projecte, $tasca) {
+    //
+}]);
 // EDIT
-Route::get('/projectes/{projecte}/tasques/{tasque}/edit', 'TascaController@edit')->name('projectes.tasques.edit');
+Route::get('/projectes/{projecte}/tasques/{tasca}/edit', 'TascaController@edit')->name('projectes.tasques.edit');
 // UPDATE
-Route::match(['put','patch'], '/projectes/{projecte}/tasques/{tasque}', 'TascaController@update')->name('projectes.tasques.update');
+Route::match(['put','patch'], '/projectes/{projecte}/tasques/{tasca}', 'TascaController@update')->name('projectes.tasques.update');
 // DESTROY
-Route::delete('/projectes/{projecte}/tasques/{tasque}', 'TascaController@destroy')->name('projectes.tasques.destroy');
+Route::delete('/projectes/{projecte}/tasques/{tasca}', 'TascaController@destroy')->name('projectes.tasques.destroy');

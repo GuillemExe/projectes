@@ -72,12 +72,14 @@ class ProjecteController extends Controller
     public function show($id)
     {
         $projecte = Projecte::findOrFail($id);
+        // Search for tasks ("tascas") by id.
+        $tascas = Tasca::where('projecte_id', 'LIKE', $id)->get();
 
         // TO POSTMAN
         // return $projecte;
 
         // TO VIEW
-        return view('projecte.projecteShow', ['projecte' => $projecte]);
+        return view('projecte.projecteShow', ['projecte' => $projecte, 'tascas' => $tascas, ]);
     }
 
     /**

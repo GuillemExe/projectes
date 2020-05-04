@@ -23,7 +23,6 @@
                     <p>{{ $tasca->nom }}</p>
                     <p>{{ $tasca->slug }}</p>
                 </div>
-                {{-- <a href="{{ route('projectes.tasques.show', $projecte->id, $tasca->id) }}">Mostrar información</a> --}}
                 <form action="{{ route('projectes.tasques.show', ['projecte' => $projecte->id, 'tasca' => $tasca->id]) }}" method="GET">
                     <input class="btn mt-4 btn-info justify-content-center font-weight-bold text-dark" type="submit" value="INFORMACION"/>
                 </form>

@@ -29,10 +29,10 @@ class ProjecteController extends Controller
         $projectes = Projecte::all();
 
         // TO POSTMAN
-        // return $projectes;
+        return $projectes;
 
         // TO VIEW
-        return view('projecte.projecteIndex', ['projectes' => $projectes]);
+        // return view('projecte.projecteIndex', ['projectes' => $projectes]);
     }
 
     /**
@@ -125,8 +125,12 @@ class ProjecteController extends Controller
      */
     public function destroy($id)
     {
-        $tasca = Tasca::where('projecte_id', 'LIKE', $id)->get();
-        if($tasca == "[]") {
+        // Invalid function 
+        // $tasca = Tasca::where('projecte_id', 'LIKE', $id)->get();
+
+        // Using the model function
+        $tasques = Projecte::find($id)->tasques;
+        if($tasques == "[]") {
             Projecte::find($id)->delete();
             // TO POSTMAN
             // return "Se puede eliminar";

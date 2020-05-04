@@ -19,7 +19,7 @@ class TascaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($id, $tascaID)
     {
         $tasques = Tasca::where('projecte_id', 'LIKE', $id)->get();
 

@@ -120,11 +120,6 @@ class TascaController extends Controller
     public function destroy($id, $tascaID)
     {
         Tasca::find($tascaID)->delete();
-
-        // TO POSTMAN
-        // return true;
-
-        // TO VIEW
-        // return view('tasca.tascaDestroy', ['eliminado' => true]);
+        return redirect()->route('projectes.show', ['projecte' => $id]);
     }
 }

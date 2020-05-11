@@ -27,6 +27,11 @@
                     <form class="d-flex justify-content-center" action="{{ route('projectes.tasques.show', ['projecte' => $projecte->id, 'tasca' => $tasca->id]) }}" method="GET">
                         <input class="btn mt-4 btn-info justify-content-center font-weight-bold text-dark" type="submit" value="INFORMACION"/>
                     </form>
+                    <form class="d-flex justify-content-center" action="{{ route('projectes.tasques.destroy', ['projecte' => $projecte->id, 'tasca' => $tasca->id]) }}" method="post">
+                        @method('delete')
+                        @csrf
+                        <input class="btn mt-4 btn-danger justify-content-center font-weight-bold text-dark" type="submit" value="DELETE"/>
+                    </form>
                 </div>
             @endforeach
             <form class="col-4" action="{{ route('projectes.tasques.create', ['projecte' => $projecte->id]) }}" method="GET">

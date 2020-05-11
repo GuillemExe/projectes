@@ -27,6 +27,9 @@
                     <form class="d-flex justify-content-center" action="{{ route('projectes.tasques.show', ['projecte' => $projecte->id, 'tasca' => $tasca->id]) }}" method="GET">
                         <input class="btn mt-4 btn-info justify-content-center font-weight-bold text-dark" type="submit" value="INFORMACION"/>
                     </form>
+                    <form class="d-flex justify-content-center" action="{{ route('projectes.tasques.edit', ['projecte' => $projecte->id, 'tasca' => $tasca->id]) }}" method="GET">
+                        <input class="btn mt-4 btn-warning justify-content-center font-weight-bold text-dark" type="submit" value="EDITAR"/>
+                    </form>
                     <form class="d-flex justify-content-center" action="{{ route('projectes.tasques.destroy', ['projecte' => $projecte->id, 'tasca' => $tasca->id]) }}" method="post">
                         @method('delete')
                         @csrf

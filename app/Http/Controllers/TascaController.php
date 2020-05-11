@@ -82,12 +82,12 @@ class TascaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($projecteId, $tascaID)
     {
         $tasca = Tasca::findOrFail($tascaID);
 
         // TO VIEW
-        return view('tasca.tascaEdit', ['tasca' => $tasca]);
+        return view('tasca.tascaEdit', ['projecteId' => $projecteId, 'tasca' => $tasca]);
     }
 
     /**
@@ -99,16 +99,17 @@ class TascaController extends Controller
      */
     public function update($id, Request $request, $tascaID)
     {
-        $tasca = Tasca::findOrFail($tascaID);
-        $tascaOld = $tasca; 
-        $input = $request->all();
-        $tasca->fill($input)->save();
+        // $tasca = Tasca::findOrFail($tascaID);
+        // $input = $request->all();
+        // $tasca->fill($input)->save();
 
-        // TO POSTMAN
-        // return $tasca;
+        // // TO POSTMAN
+        // // return $tasca;
 
-        // TO VIEW
-        return view('tasca.tascaUpdate', ['tasca' => $tasca, 'tascaOld' => $tascaOld]);
+        // // TO VIEW
+        // return view('projectes.projecteUpdate', ['projecteId' => $projecteId, 'tasca' => $tasca]);
+
+        return "Hola";
     }
 
     /**

@@ -49,25 +49,18 @@ Route::get('/projectes/{projecte}/tasques', 'TascaController@index')->name('proj
 Route::get('/projectes/{projecte}/tasques/create', ['as' => 'projectes.tasques.create', 'uses' => 'TascaController@create', function ($projecte) {
     //
 }]);
-
-
-
-
 // STORE
-// Route::post('/projectes/{projecte}/tasques', 'TascaController@store')->name('projectes.tasques.store');
 Route::post('/projectes/{projecte}/tasques', ['as' => 'projectes.tasques.store', 'uses' => 'TascaController@store', function ($id) {
     //
 }]);
-
-
-
-
 // SHOW
 Route::get('/projectes/{projecte}/tasques/{tasca}', ['as' => 'projectes.tasques.show', 'uses' => 'TascaController@show', function ($projecte, $tasca) {
     //
 }]);
 // EDIT
-Route::get('/projectes/{projecte}/tasques/{tasca}/edit', 'TascaController@edit')->name('projectes.tasques.edit');
+Route::get('/projectes/{projecte}/tasques/{tasca}/edit', ['as' => 'projectes.tasques.edit', 'uses' => 'TascaController@edit', function ($projecte, $tasca) {
+    //
+}]);
 // UPDATE
 Route::match(['put','patch'], '/projectes/{projecte}/tasques/{tasca}', 'TascaController@update')->name('projectes.tasques.update');
 // DESTROY

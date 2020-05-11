@@ -125,6 +125,6 @@ class TascaController extends Controller
         // return true;
 
         // TO VIEW
-        return view('tasca.tascaDestroy', ['eliminado' => true]);
+        // return view('tasca.tascaDestroy', ['eliminado' => true]);
     }
 }

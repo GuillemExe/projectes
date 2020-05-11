@@ -29,10 +29,10 @@ class ProjecteController extends Controller
         $projectes = Projecte::all();
 
         // TO POSTMAN
-        return $projectes;
+        // return $projectes;
 
         // TO VIEW
-        // return view('projecte.projecteIndex', ['projectes' => $projectes]);
+        return view('projecte.projecteIndex', ['projectes' => $projectes]);
     }
 
     /**
@@ -60,7 +60,8 @@ class ProjecteController extends Controller
         // return $projecte;
 
         // TO VIEW
-        return view('projecte.projecteStore', ['projecte' => $projecte]);
+        // return view('projecte.projecteStore', ['projecte' => $projecte]);
+        return view('projecte.projecteIndex', ['projectes' => Projecte::all()]);
     }
 
     /**
@@ -129,20 +130,12 @@ class ProjecteController extends Controller
         // $tasca = Tasca::where('projecte_id', 'LIKE', $id)->get();
 
         // Using the model function
-        $tasques = Projecte::find($id)->tasques;
-        if($tasques == "[]") {
-            Projecte::find($id)->delete();
-            // TO POSTMAN
-            // return "Se puede eliminar";
-            
-            // TO VIEW
-            return view('projecte.projecteDestroy', ['eliminado' => true]);
+        $projecte = Projecte::find($id);
+        if(isset($projecte->tasques) && "[]" == $projecte->tasques) {
+            $projecte->delete();
+            return redirect()->route('projectes.index');
         } else {
-            // TO POSTMAN
-            // return "No se puede eliminar";
-
-            // TO VIEW
-            return view('projecte.projecteDestroy', ['eliminado' => false]);
+            return redirect()->route('projectes.index');
         }
     }
 }

@@ -8,7 +8,43 @@
 
 
 @section('content')
-<h1>Create</h1>
+<h1>Crear tasca</h1>
+<div class="my-5">
+    <form action="{{ route('projectes.tasques.store', ['projecte' => $projecteId]) }}" method="post">
+        
+        @method('post')
+        @csrf
+    
+        <fieldset disabled>
+            <div class="form-group">
+                <label>Id del projecte relacionat</label>
+                <input name="projecte_id" class="form-control" value="{{ $projecteId }}"/>
+            </div>
+        </fieldset>
+
+        <div class="form-group">
+            <label>Nom</label>
+            <input name="nom" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label>Slug</label>
+            <input name="slug" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label>Completada</label>
+            <input name="completada" type="checkbox" data-toggle="toggle">
+        </div>
+
+        <div class="form-group">
+            <label>Descripcio</label>
+            <textarea name="descripcio" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+        <input class="btn mt-4 btn-danger justify-content-center" type="submit" value="update"/>
+    </form>
+</div>
 
 @endsection
 

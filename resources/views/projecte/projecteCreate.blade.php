@@ -8,6 +8,7 @@
 
 
 @section('content')
+<h1>Crear projecte</h1>
 <div class="my-5">
     <form action="{{ route('projectes.store') }}" method="post">
         

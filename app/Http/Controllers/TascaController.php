@@ -19,7 +19,7 @@ class TascaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id, $tascaID)
+    public function index($id)
     {
         $tasques = Tasca::where('projecte_id', 'LIKE', $id)->get();
 
@@ -35,10 +35,10 @@ class TascaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         // TO VIEW
-        return view('tasca.tascaCreate');
+        return view('tasca.tascaCreate', ['projecteId' => $id]);
     }
 
     /**
@@ -56,7 +56,7 @@ class TascaController extends Controller
         // return $tasca;
 
         // TO VIEW
-        return view('tasca.tascaStore', ['tasca' => $tasca]);
+        return redirect()->route('projectes.show', ['projecte' => $id]);
     }
 
     /**

@@ -10,7 +10,7 @@
 @section('content')
 <h1>Editar una tasca</h1>
 <div class="my-5">
-    <form action="{{ route('projectes.tasques.update', ['projecte' => $projecteId, 'tasca' => $tasca->id, ]) }}" method="put">
+    <form action="{{ route('projectes.tasques.update', ['projecte' => $projecteId, 'tasca' => $tasca->id, ]) }}" method="post">
         
         @method('put')
         @csrf

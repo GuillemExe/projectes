@@ -99,17 +99,15 @@ class TascaController extends Controller
      */
     public function update($id, Request $request, $tascaID)
     {
-        // $tasca = Tasca::findOrFail($tascaID);
-        // $input = $request->all();
-        // $tasca->fill($input)->save();
+        $tasca = Tasca::findOrFail($tascaID);
+        $input = $request->all();
+        $tasca->fill($input)->save();
 
-        // // TO POSTMAN
-        // // return $tasca;
+        // TO POSTMAN
+        // return $tasca;
 
-        // // TO VIEW
-        // return view('projectes.projecteUpdate', ['projecteId' => $projecteId, 'tasca' => $tasca]);
-
-        return "Hola";
+        // TO VIEW
+        return redirect()->route('projectes.show', ['projecte' => $id]);
     }
 
     /**

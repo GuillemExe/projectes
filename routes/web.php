@@ -62,6 +62,10 @@ Route::get('/projectes/{projecte}/tasques/{tasca}/edit', ['as' => 'projectes.tas
     //
 }]);
 // UPDATE
-Route::match(['put','patch'], '/projectes/{projecte}/tasques/{tasca}', 'TascaController@update')->name('projectes.tasques.update');
+Route::match(['put','patch'], '/projectes/{projecte}/tasques/{tasca}', ['as' => 'projectes.tasques.update', 'uses' => 'TascaController@update', function ($projecte, $valores, $tasca) {
+    //
+}]);
+
+
 // DESTROY
 Route::delete('/projectes/{projecte}/tasques/{tasca}', 'TascaController@destroy')->name('projectes.tasques.destroy');
